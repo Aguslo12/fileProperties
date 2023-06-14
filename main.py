@@ -45,6 +45,12 @@ def abrir_app(ruta_archivo, extension):
         os.startfile(ruta_archivo)
     elif extension == ".pdf":
         os.startfile(ruta_archivo)
+    elif extension == ".txt":
+        os.startfile(ruta_archivo)
+    elif extension == ".rar":
+        os.startfile(ruta_archivo)
+    elif extension == ".zip":
+        os.startfile(ruta_archivo)
     else:
         print("No se puede abrir el archivo con esta extension")
 
