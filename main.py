@@ -72,5 +72,5 @@ if opcion.lower() == "s":
 elif opcion.lower() == "n":
     print("Caracter ingresado no valido")
 else:
-    print("¡Nos vemos! Espero haber sido de ayuda")
+    print("¡Nos vemos! Espero haber sido de mucha ayuda")
     exit()
