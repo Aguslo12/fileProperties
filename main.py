@@ -25,9 +25,21 @@ def mostrar_propiedades_archivo(ruta_archivo):
         print(f"Ruta: {ruta}")
     else:
         print("Archivo no encontrado.")
+def cambiar_permisos_archivo(ruta_archivo, permisos):
+    comando = f"icacls {ruta_archivo} /{permisos}"
+    proceso = subprocess.Popen(comando, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    _, error = proceso.communicate()
 
+    if proceso.returncode == 0:
+        print("Los permisos se han cambiado correctamente.")
+    else:
+        print(f"Error al cambiar los permisos: {error.decode('latin-1')}")
 directorio = input("Ingrese el directorio para buscar el archivo: ")
 nombre_archivo = input("Ingrese el nombre del archivo a buscar: ")
 
 ruta_archivo = buscar_archivo(directorio, nombre_archivo)
 mostrar_propiedades_archivo(ruta_archivo)
+opcion = input("Desea cambiar los permisos del archivo? (s/n): ")
+if opcion.lower() == "s":
+    permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Administrators:F'): ")
+    cambiar_permisos_archivo(ruta_archivo, permisos)
