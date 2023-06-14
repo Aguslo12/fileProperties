@@ -28,7 +28,7 @@ def mostrar_propiedades_archivo(ruta_archivo):
         print("Archivo no encontrado.")
 
 def eleccion_usuario(ruta_archivo):
-    extension = os.path.splitext(ruta_archivo)
+    nom, extension = os.path.splitext(ruta_archivo)
     eleccion = input("Ingrese a continuacion que accion desea realizar: "
                      "\nCambiar los permisos del archivo = 1"
                      "\nEjecutar el archivo con una app = 2\n")
@@ -39,7 +39,6 @@ def eleccion_usuario(ruta_archivo):
         abrir_app(ruta_archivo,extension)
 
 def abrir_app(ruta_archivo, extension):
-    print(extension)
     if extension == ".docx":
         os.startfile(ruta_archivo)
     elif extension == ".mp3":
