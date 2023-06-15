@@ -3,7 +3,7 @@
 
 🚧 Proyecto en construccion 🚧
 
-Un proyecto de [Python](https://www.python.org/) que se basa en la administración de archivos de un SO para permitirle al usuario poder buscar un archivo en un directorio, ver sus [propiedades](https://help.gnome.org/users/gnome-help/stable/nautilus-file-properties-basic.html.es), cambiar los permisos, y ejecutar el archivo simulando un doble click sobre él en el explorador de Windows.
+Un proyecto de [Python](https://www.python.org/) que se basa en la administración de archivos de un SO para permitirle al usuario poder buscar un archivo en un directorio, ver sus [propiedades](https://help.gnome.org/users/gnome-help/stable/nautilus-file-properties-basic.html.es), cambiar los permisos, y ejecutarlo simulando un doble click sobre él en el explorador de Windows.
 
 ## Setup
 ### ⬇️Instalacion de Python
