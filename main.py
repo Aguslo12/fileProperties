@@ -1,4 +1,3 @@
-
 import os
 import subprocess
 import stat
@@ -11,6 +10,7 @@ def buscar_archivo(directorio, nombre_archivos):
             ruta_completa = os.path.join(root, nombre_archivos)
             break
     return ruta_completa
+
 
 def mostrar_propiedades_archivo(ruta_archivo):
     if ruta_archivo is not None:
@@ -26,6 +26,7 @@ def mostrar_propiedades_archivo(ruta_archivo):
         print(f"Último cambio: {datetime.fromtimestamp(stat_info.st_ctime)}")
     else:
         print("Archivo no encontrado.")
+        exit()
 
 def eleccion_usuario(ruta_archivo):
     nom, extension = os.path.splitext(ruta_archivo)
@@ -36,7 +37,8 @@ def eleccion_usuario(ruta_archivo):
         permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'): ")
         cambiar_permisos_archivo(ruta_archivo, permisos)
     if int(eleccion) == 2:
-        abrir_app(ruta_archivo,extension)
+        abrir_app(ruta_archivo, extension)
+
 
 def abrir_app(ruta_archivo, extension):
     if extension == ".docx":
@@ -53,6 +55,7 @@ def abrir_app(ruta_archivo, extension):
         os.startfile(ruta_archivo)
     else:
         print("No se puede abrir el archivo con esta extension")
+
 
 def cambiar_permisos_archivo(ruta_archivo, permisos):
     comando = f"icacls {ruta_archivo} /{permisos}"
