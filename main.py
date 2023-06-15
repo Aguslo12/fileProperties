@@ -34,7 +34,13 @@ def eleccion_usuario(ruta_archivo):
                      "\nCambiar los permisos del archivo = 1"
                      "\nEjecutar el archivo con una app = 2\n")
     if int(eleccion) == 1:
-        permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'): ")
+        permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'):\n "
+                         "F: Full Control\n"
+                         "M: Modify\n"
+                         "RX: Read & Execute\n"
+                         "R: Read\n"
+                         "W: Write\n"
+                         "D: Denied access\n")
         cambiar_permisos_archivo(ruta_archivo, permisos)
     if int(eleccion) == 2:
         abrir_app(ruta_archivo, extension)
