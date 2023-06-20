@@ -12,7 +12,11 @@ def main():
                 ruta_completa = os.path.join(root, nombre_archivos)
                 print(ruta_completa)
                 break
-        return ruta_completa
+        if ruta_completa is not None:
+            return ruta_completa
+        else:
+            print("Archivo no encontrado.")
+            inicio()
 
 
     def mostrar_propiedades_archivo(ruta_archivo):
@@ -30,37 +34,17 @@ def main():
             print(f"Último acceso: {datetime.fromtimestamp(stat_info.st_atime)}")
             print(f"Última modificación: {datetime.fromtimestamp(stat_info.st_mtime)}")
             print(f"Último cambio de estado: {datetime.fromtimestamp(stat_info.st_ctime)}")
-            print(f"El PID del proceso actual es: {os.getpid()}")
         else:
             print("Archivo no encontrado.")
-
             main()
 
-
     def mostrar_ayuda():
+        print("-----------------------------------------")
         print("PROP                             Muestra las propiedades del archivo seleccionado.\n"
               "ABRIR                            Abre el archivo con una aplicaión relacionada dentro del SO.\n"
               "PERMISOS                         Permite cambiar los permisos del archivo dentro del dispositivo\n"
               "INICIO                           Volver al inicio.\n"
-              "SALIR                            Cierra la aplicación.\n")
-
-
-    def eleccion_usuario(ruta_archivo):
-        nom, extension = os.path.splitext(ruta_archivo)
-        eleccion = input("Ingrese a continuacion que accion desea realizar: "
-                         "\nCambiar los permisos del archivo = 1"
-                         "\nEjecutar el archivo con una app = 2\n>")
-        if int(eleccion) == 1:
-            permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'):\n"
-                             "F: Full Control\n"
-                             "M: Modify\n"
-                             "RX: Read & Execute\n"
-                             "R: Read\n"
-                             "W: Write\n"
-                             "D: Denied access\n>")
-            cambiar_permisos_archivo(ruta_archivo, permisos)
-        if int(eleccion) == 2:
-            abrir_app(ruta_archivo)
+              "SALIR                            Cierra la aplicación.")
 
     #Funcion que abre la aplicacion
     def abrir_app(ruta_archivo):
@@ -76,20 +60,6 @@ def main():
             print("Los permisos se han cambiado correctamente.")
         else:
             print(f"Error al cambiar los permisos: {error.decode('latin-1')}")
-
-    #Funcion que decide si realizar una accion o no en el archivo
-    '''
-        def vol_accion():
-        opcion = input("Desea realizar alguna accion con el archivo nombrado?\nIngrese S para si y N para no: \n")
-        if opcion.lower() == "s":
-            eleccion_usuario(ruta_archivo)
-        elif opcion.lower() == "n":
-            print("¡Nos vemos! Espero haber sido de mucha ayuda")
-            exit()
-        else:
-            print("Caracter ingresado no valido")
-            vol_accion()
-    '''
 
 
     #Genera la accion que el usuario decida
@@ -223,6 +193,7 @@ def main():
         comando = input(f"Ingrese la accion que desea realizar(Si desconoce las opciones ingrese 'ayuda'):\n{os.getcwd()}\\{nombre_archivo}>")
         eleccion_comando(comando, ruta_archivo,nombre_archivo)
 
+    # Es la misma funcion que la de arriba pero sin pedir que ingrese la accion.
     def realizar_accion2(nombre_archivo,ruta_archivo):
         comando = input(f"{os.getcwd()}\\{nombre_archivo}>")
         eleccion_comando(comando,ruta_archivo,nombre_archivo)
