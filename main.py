@@ -21,6 +21,7 @@ def main():
 
     def mostrar_propiedades_archivo(ruta_archivo):
         if ruta_archivo is not None:
+            print(ruta_archivo)
             stat_info = os.stat(ruta_archivo)
             nombre_archivo, extension = os.path.splitext(ruta_archivo)
             print("------------------------------\nPROPIEDADES")
@@ -95,51 +96,21 @@ def main():
             print("Comando no válido, escriba AYUDA para poder ver los comandos disponibles.")
             realizar_accion2(nombre_archivo,ruta_archivo)
 
-    def mostrar_archivos_zip(archivo_zip):
-        with zipfile.ZipFile(archivo_zip, 'r') as zip_ref:
-            archivos = zip_ref.namelist()
-            print("Archivos en el ZIP:")
-            for archivo in archivos:
-                print(archivo)
+
 
     def elegir_archivo_zip():
         directorio_actual = os.getcwd()
         archivo_zip = input("Ingrese el nombre del archivo ZIP:\n>")
         archivo_zip_path = os.path.join(directorio_actual, archivo_zip)
         if os.path.isfile(archivo_zip_path) and archivo_zip.endswith('.zip'):
-            mostrar_archivos_zip(archivo_zip_path)
+
             print("-----------------------------------------")
-            elegir_opcion_zip(archivo_zip_path)
+            seleccionar_archivo_zip(archivo_zip_path)
         else:
             print("Archivo ZIP inválido.")
             elegir_archivo_zip()
 
-    def elegir_opcion_zip(archivo_zip):
-        opcion = input("Ingrese N para ingresar un archivo o la letra 'C' para entrar a una carpeta:\n>")
-        if opcion == "C":
-            elegir_carpeta_zip(archivo_zip)
-        else:
-            seleccionar_archivo_zip(archivo_zip)
 
-    def elegir_carpeta_zip(archivo_zip):
-        carpeta = input("Ingrese el nombre de la carpeta:\n>")
-        with zipfile.ZipFile(archivo_zip, 'r') as zip_ref:
-            archivos = zip_ref.namelist()
-            carpetas = set()
-            for archivo in archivos:
-                if archivo.startswith(carpeta) and archivo != carpeta:
-                    carpetas.add(archivo.split('/')[0])
-            if len(carpetas) > 0:
-                print("Se entró a la carpeta.")
-                print("Carpetas disponibles:")
-                for carpeta in carpetas:
-                    print(carpeta)
-                print("-----------------------------------------")
-                elegir_opcion_zip(archivo_zip)
-            else:
-                print("No se encontraron carpetas con ese nombre.")
-                print("-----------------------------------------")
-                elegir_opcion_zip(archivo_zip)
 #Falta corregir la ruta del archivo seleccionado
     def seleccionar_archivo_zip(archivo_zip):
         with zipfile.ZipFile(archivo_zip, 'r') as zip_ref:
@@ -147,21 +118,20 @@ def main():
             print("Archivos disponibles:")
             for i, archivo in enumerate(archivos, 1):
                 print(f"{i}. {archivo}")
-            opcion = input("Ingrese el nombre del archivo:\n>")
+            opcion = input("Ingrese el nombre del archivo(Con su ruta completa como sale arriba):\n>")
             archivo_seleccionado = opcion.strip()
             for archivo in archivos:
                 if archivo.endswith(archivo_seleccionado):
-                    ruta_archivo_zip = os.path.join(archivo_zip, archivo)
-                    ruta_archivo_zip = ruta_archivo_zip.replace("\\\\", "\\")
-                    ruta_archivo_zip = ruta_archivo_zip.replace("/", "\\")
-                    print(ruta_archivo_zip)
-                    ruta_directorio = str(os.path.dirname(ruta_archivo_zip)).replace("\\\\", "\\")
-                    print(ruta_directorio)
-                    realizar_accion(archivo_seleccionado, ruta_archivo_zip)
+                    ruta_archivo_extraido = zip_ref.extract(archivo_seleccionado)
+                    print(f"Ruta del archivo extraído: {ruta_archivo_extraido}")
+                    print('Es archivo: {}'.format(os.path.isfile(ruta_archivo_extraido)))
+                    print('Es carpeta: {}'.format(os.path.isdir(ruta_archivo_extraido)))
+                    print('Existe: {}'.format(os.path.exists(ruta_archivo_extraido)))
+                    realizar_accion(archivo_seleccionado, ruta_archivo_extraido)
                     return
             print("Archivo inválido.")
             print("-----------------------------------------")
-            elegir_opcion_zip(archivo_zip)
+            seleccionar_archivo_zip(archivo_zip)
     def inicio():
         decision = input(f"Directorio actual: {os.getcwd()}\n"
                          "1: Moverse a otro directorio\n"
