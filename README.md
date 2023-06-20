@@ -15,6 +15,7 @@ De no tenerlo instalado, puede hacerlo desde la [pagina oficial de Python](https
 2. Instale las siguientes dependencias necesarias.
 ```shell
 pip install os
+pip install zipfile
 ```
 
 ### 📁 Acceso al proyecto
