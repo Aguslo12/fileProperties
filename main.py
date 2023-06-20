@@ -140,7 +140,7 @@ def main():
                 print("No se encontraron carpetas con ese nombre.")
                 print("-----------------------------------------")
                 elegir_opcion_zip(archivo_zip)
-
+#Falta corregir la ruta del archivo seleccionado
     def seleccionar_archivo_zip(archivo_zip):
         with zipfile.ZipFile(archivo_zip, 'r') as zip_ref:
             archivos = zip_ref.namelist()
