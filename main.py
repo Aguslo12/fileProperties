@@ -39,7 +39,7 @@ def main():
             print("Archivo no encontrado.")
             main()
 
-    def mostrar_ayuda():
+    def opciones():
         print("-----------------------------------------")
         print("PROP                             Muestra las propiedades del archivo seleccionado.\n"
               "ABRIR                            Abre el archivo con una aplicaión relacionada dentro del SO.\n"
@@ -65,11 +65,7 @@ def main():
 
     #Genera la accion que el usuario decida
     def eleccion_comando(comando,ruta_archivo,nombre_archivo):
-        if comando == "ayuda":
-            mostrar_ayuda()
-            print("-----------------------------------------")
-            realizar_accion2(nombre_archivo,ruta_archivo)
-        elif comando == "prop":
+        if comando == "prop":
             mostrar_propiedades_archivo(ruta_archivo)
             print("-----------------------------------------")
             realizar_accion2(nombre_archivo, ruta_archivo)
@@ -160,11 +156,14 @@ def main():
         print("-----------------------------------------")
 
     def realizar_accion(nombre_archivo,ruta_archivo):
-        comando = input(f"Ingrese la accion que desea realizar(Si desconoce las opciones ingrese 'ayuda'):\n{os.getcwd()}\\{nombre_archivo}>")
+        opciones()
+        comando = input(f"Ingrese la accion que desea realizar:\n{os.getcwd()}\\{nombre_archivo}>")
         eleccion_comando(comando, ruta_archivo,nombre_archivo)
 
     # Es la misma funcion que la de arriba pero sin pedir que ingrese la accion.
     def realizar_accion2(nombre_archivo,ruta_archivo):
+        print("Ingrese accion")
+        opciones()
         comando = input(f"{os.getcwd()}\\{nombre_archivo}>")
         eleccion_comando(comando,ruta_archivo,nombre_archivo)
     inicio()
