@@ -15,7 +15,10 @@ De no tenerlo instalado, puede hacerlo desde la [pagina oficial de Python](https
 2. Instale las siguientes dependencias necesarias.
 ```shell
 pip install os
+pip install stat
+pip install subprocess
 pip install zipfile
+pip install datetime
 ```
 
 ### 📁 Acceso al proyecto
@@ -27,3 +30,24 @@ pip install zipfile
 ```shell
 python main.py
 ```
+
+## ⚙️ Uso
+Cuando el programa ya esta en uso, lo primero va a hacer es mostrarnos el directorio actual en el que se encuentra y nos va a pedir:
+1. Saber si queremos cambiar a otro directorio.
+2. Buscar un archivo en el directorio actual.
+
+Una vez que estemos seguros de querer buscar un archivo en el directorio, ingresamos el archivo al cual queremos acceder y vamos a poder escribir los siguientes comando para generar acciones con el archivo seleccionado:
+
+- `ayuda`: Muestra información de los comandos disponibles.
+- `prop`: Muestra todas las propiedades del archivo.
+- `abrir`: Abre el archivo con una aplicación relacionada en el SO.
+- `permisos`: Permite cambiar los permisos del archivo.
+- `inicio`: Vuelve al inicio del programa para permitir cambiar de directorio.
+- `salir`: Termina la ejecución del programa.
+
+## Más Explicaciones
+La principal base de funcionamiento de nuestro programa es la [librería os](https://docs.python.org/es/3.10/library/os.html) la cual nos permite tener un contacto directo con el sistema operativo en el cual se ejecuta el código. La utilizamos para poder llegar a obtener intformación sobre las propiedades del archivo que seleccionamos y las interacciones que podemos tener con dicho archivo a través del SO.
+
+## Autores
+| [Agustin Lobos](https://github.com/Aguslo12) |  [Franco Santibañez](https://github.com/francosantzz) |
+| :---: | :---: |
