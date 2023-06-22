@@ -3,7 +3,7 @@ import subprocess
 import stat
 from datetime import datetime
 import zipfile
-import re
+
 def main():
     def buscar_archivo(directorio, nombre_archivos):
         ruta_completa = None
@@ -74,7 +74,7 @@ def main():
             print("-----------------------------------------")
             realizar_accion2(nombre_archivo, ruta_archivo)
         elif comando == "permisos":
-            permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'):\n "
+            permisos = input("Ingrese los permisos deseados (ejemplo: 'grant Nombre_Usuario:F'):\n"
                              "F: Full Control\n"
                              "M: Modify\n"
                              "RX: Read & Execute\n"
