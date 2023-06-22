@@ -44,6 +44,7 @@ Una vez que estemos seguros de querer buscar un archivo en el directorio, ingres
 - `permisos`: Permite cambiar los permisos del archivo.
 - `inicio`: Vuelve al inicio del programa para permitir cambiar de directorio.
 - `salir`: Termina la ejecución del programa.
+- `abzip`; Permite abrir los archivos que son .zip y ver los elementos que contienen.
 
 ## Más Explicaciones
 La principal base de funcionamiento de nuestro programa es la [librería os](https://docs.python.org/es/3.10/library/os.html) la cual nos permite tener un contacto directo con el sistema operativo en el cual se ejecuta el código. La utilizamos para poder llegar a obtener intformación sobre las propiedades del archivo que seleccionamos y las interacciones que podemos tener con dicho archivo a través del SO.
